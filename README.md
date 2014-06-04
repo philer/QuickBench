@@ -17,11 +17,13 @@ register function candidates,
 run them any number of times,
 get outputs.
 
+Wrap output in a `pre` tag for readability or call your script via command line.
+
 #### Basic example
 
 Which is the fastest way to find out if a given string
 exists in a collection of strings?
-Ideas: in_array, strpos
+Ideas: `in_array`, `strpos`
 ```PHP
 $needle = 'Starr';
 $haystack = ['McCartney', 'Lennon', 'Harrison', 'Starr'];
@@ -59,5 +61,5 @@ Results for 'strpos':	average 0.0154098597 per 10000 runs
 See example.php for a more elaborate example
 
 ### How it works
-Look up microtime(true) and call_user_func_array().
+Look up `microtime(true)` and `call_user_func_array()`.
 
