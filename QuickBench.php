@@ -261,13 +261,16 @@ class Candidate {
     public function run($runs)
     {
         $callback = $this->callback;
-        $args     = $this->arguments;
-        $ping = microtime(true);
-        for ($i = 0 ; $i < $runs ; ++$i) {
-            call_user_func_array($callback, $args);
-        }
-        $pong = microtime(true);
-        $this->samples[] = [(double) $pong - (double) $ping, $runs];
+        if ($args     = $this->arguments) {
+			$ping = microtime(true);
+	        for ($i = 0 ; $i < $runs ; ++$i) call_user_func_array($callback, $args);
+	        $pong = microtime(true);
+		} else {
+			$ping = microtime(true);
+	        for ($i = 0 ; $i < $runs ; ++$i) call_user_func($callback);
+	        $pong = microtime(true);
+		}
+		$this->samples[] = [(double) $pong - (double) $ping, $runs];
         return $this;
     }
 
